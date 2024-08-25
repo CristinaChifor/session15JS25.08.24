@@ -45,6 +45,23 @@ class Product {
     }
 }
 
+class DiscountProduct extends Product {
+    constructor(productName, price, stockQuantity, discount) {
+        super(productName, price, stockQuantity);
+        this.discount = discount;
+    }
+
+    getDiscountedPrice() {
+        let price = this.price - this.price * (this.discount / 100);
+        return price;
+    }
+
+    logDiscountedPrice() {
+        let discountedPrice = this.getDiscountedPrice();
+        console.log(`Price with discount for ${this.productName} is ${discountedPrice}.`);
+    }
+}
+
 const bike = new Product("Bike", 750, 1000);
 console.log(bike);
 
@@ -77,6 +94,26 @@ console.log(laptop);
   laptop.removeFromStock(300);
   laptop.addToStock(200);
 
+/** Mostenirea este un concept fundamental in OOP si se refera la capacitatea de a defini proprietati si 
+ * functionalitati comune ale unor clase intr-o singura clasa numita clasa parinte pe care ulterior
+ *  aceste clase le pot mosteni (extinde), astfel eliminand repetitia.
+  
+Mostenirea se realizeaza prin cuvintele cheie extends si super.
+
+extends se foloseste pentru a specifica clasa din care noua clasa mosteneste proprietatile.
+super() - se folosește pentru a apela constructorul clasei parinte.
+
+Sintaxa: class ClasaCopil extends ClasaParinte { constructor() { super() } }
+ */
+
+const smartphone = new DiscountProduct("Smartphone", 3000, 200, 20);
+console.log(smartphone);
+
+smartphone.removeFromStock(23);
+// const smartphoneDiscountedPrice =smartphone.getDiscountedPrice();
+// console.log(`Price with discount for ${smartphone.productName} is ${smartphoneDiscountedPrice}.`);
+
+smartphone.logDiscountedPrice();
 
 
 
